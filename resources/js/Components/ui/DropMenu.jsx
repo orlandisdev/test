@@ -1,15 +1,14 @@
 import { getIcon } from "@/helpers/icons";
+import { Link } from "@inertiajs/react";
 
 const DropMenu = ({ data, isOpen }) => {
-    data.map((asset) => console.log(asset.id));
     return (
-        <div className={`bg-blue-600 text-white flex flex-col`}>
+        <div className={` flex flex-col`}>
             {data
                 ? data.map((asset) => (
-                      <button
-                          className={`${
-                              !isOpen ? "px-5" : "px-2"
-                          } hover:bg-blue-800 hover:cursor-pointer hover:transition transition-all`}
+                      <Link
+                        href={asset.url}
+                          className={`px-2 hover:cursor-pointer hover:transition transition-all`}
                           key={asset.id}
                           style={{
                               height: "70px",
@@ -19,14 +18,12 @@ const DropMenu = ({ data, isOpen }) => {
                               {getIcon(asset.icon)}
 
                               <span
-                                  className={`text-sm ${
-                                      isOpen ? "opacity-1" : "opacity-0"
-                                  } transition`}
+                                  className={`text-sm transition`}
                               >
-                                  {isOpen ? asset.name : ""}
+                                  {asset.name }
                               </span>
                           </p>
-                      </button>
+                      </Link>
                   ))
                 : "Loading"}
         </div>

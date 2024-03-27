@@ -1,8 +1,12 @@
 import { IconosEnum } from "@/emun/icons.enum";
 import { getIcon } from "@/helpers/icons";
-import { useRemember } from "@inertiajs/react";
 import DropMenu from "./DropMenu";
 import { useState } from "react";
+import {
+    HoverCard,
+    HoverCardContent,
+    HoverCardTrigger,
+} from "@/components/ui/hover-card";
 
 const Menu = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -15,6 +19,22 @@ const Menu = () => {
             active: true,
             url: "expedientes",
             icon: IconosEnum.EXPEDIENTES,
+            dropgable: [
+              {
+                  id: 1,
+                  name: "Expedientes",
+                  active: true,
+                  url: "",
+                  icon: IconosEnum.MANTEINIMIENTO,
+              },
+              {
+                  id: 2,
+                  name: "Expedientes 2",
+                  active: true,
+                  url: "",
+                  icon: IconosEnum.MANTEINIMIENTO,
+              },
+          ],
         },
         {
             id: 2,
@@ -70,15 +90,16 @@ const Menu = () => {
                     id: 1,
                     name: "Usuarios",
                     active: true,
-                    url: "",
-                    icon: IconosEnum.MANTEINIMIENTO,
-                }, {
-                  id: 2,
-                  name: "Departamentos",
-                  active: true,
-                  url: "",
-                  icon: IconosEnum.MANTEINIMIENTO,
-              },
+                    url: "/mantenimiento/usuarios",
+                    icon: IconosEnum.USERS,
+                },
+                {
+                    id: 2,
+                    name: "Departamentos",
+                    active: true,
+                    url: "/mantenimiento/departamentos",
+                    icon: IconosEnum.DEPARTAMENTOS,
+                },
             ],
         },
     ];
@@ -86,30 +107,43 @@ const Menu = () => {
     return (
         <>
             <aside className={`bg-blue-800 text-white flex flex-col`}>
-                
-                    {menu.filter(isActive => isActive.active).map((asset) => (
-                        <button
-                            className={`${
-                                !isOpen ? "px-5" : "px-2"
-                            } hover:bg-blue-600 hover:cursor-pointer hover:transition transition-all`}
-                            key={asset.id}
-                            style={{
-                                height: "68px",
-                            }}
-                            onClick={() => setDropData(dropData ?null :asset.dropgable)}
-                        >
-                            <p className="flex flex-col items-center pt-4 gap-1">
-                                {getIcon(asset.icon)}
+                {menu
+                    .filter((isActive) => isActive.active)
+                    .map((asset) => (
+                        <HoverCard openDelay={false} closeDelay={false} key={asset.id} >
+                            <HoverCardTrigger
 
-                                <span
-                                    className={`text-sm ${
-                                        isOpen ? "opacity-1" : "opacity-0"
-                                    } transition`}
-                                >
-                                    {isOpen ? asset.name : ""}
-                                </span>
-                            </p>
-                        </button>
+                                className={`${
+                                    !isOpen ? "px-5" : "px-2"
+                                } hover:bg-blue-600 hover:cursor-pointer hover:transition transition-all`}
+                               
+                                style={{
+                                    height: "68px",
+                                }}
+                                onClick={() =>
+                                    setDropData(
+                                        dropData ? null : asset.dropgable
+                                    )
+                                }
+                            >
+                                <p className="flex flex-col items-center pt-4 gap-1">
+                                    {getIcon(asset.icon)}
+
+                                    <span
+                                        className={`text-sm ${
+                                            isOpen ? "opacity-1" : "opacity-0"
+                                        } transition`}
+                                    >
+                                        {isOpen ? asset.name : ""}
+                                    </span>
+                                </p>
+                            </HoverCardTrigger>
+                            {asset.dropgable && (
+                                <HoverCardContent >
+                                  <DropMenu key={asset.id} data={asset.dropgable} />
+                                </HoverCardContent>
+                            )}
+                        </HoverCard>
                     ))}
                 <div className="flex flex-col items-center md:mt-32 mt-16">
                     <div className="h-16">
@@ -130,7 +164,6 @@ const Menu = () => {
                     </div>
                 </div>
             </aside>
-            {dropData && <DropMenu data={dropData} isOpen={isOpen} />}
         </>
     );
 };

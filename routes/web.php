@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LdapUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\LoginController;
-
+use App\Http\Controllers\MantenimientoController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -27,9 +27,12 @@ Route::get('/', function () {
 })->name('home');
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
 Route::post('/login', [LoginController::class, 'store'])->name('login.store');
-
-
 Route::get('/ldaptest', [LdapUserController::class, 'index'])->name('ldaptest');
+
+
+Route::get('/mantenimiento/usuarios', [MantenimientoController::class, 'usuarios'])->name('mantenimiento.usuarios');
+Route::get('/mantenimiento/departamentos', [MantenimientoController::class, 'departamentos'])->name('mantenimiento.departamentos');
+
 
 
 
