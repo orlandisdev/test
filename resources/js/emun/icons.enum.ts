@@ -17,6 +17,9 @@ const enum IconosEnum {
   EUREKA = "eureka",
   EUREKAWHITE = "eurekawhite",
   LINE= "line",
+  USERS= "users",
+DEPARTAMENTOS= "departamentos",
+
 
 }
 export { IconosEnum };
