@@ -1,0 +1,2 @@
+composer require barryvdh/laravel-debugbar:3.10 --dev
+npm install --save-dev react react-dom

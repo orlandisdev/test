@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+input{
+    outline: none;
+}
+
+
+.loginStylesManual{
+    @media(790px <= width){
+
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.manualImageFixed{
+    right:630px
+}
