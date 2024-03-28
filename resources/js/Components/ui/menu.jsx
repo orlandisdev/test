@@ -139,7 +139,7 @@ const Menu = () => {
                                 </p>
                             </HoverCardTrigger>
                             {asset.dropgable && (
-                                <HoverCardContent >
+                                <HoverCardContent isOpen={isOpen} className='bg-blue-800 text-white'>
                                   <DropMenu key={asset.id} data={asset.dropgable} />
                                 </HoverCardContent>
                             )}

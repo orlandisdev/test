@@ -19,7 +19,7 @@ input{
 .manualImageFixed{
     right:630px
 }
-/* 
+
 
 @layer base {
     :root {
@@ -54,10 +54,10 @@ input{
    
       --radius: 0.5rem;
 
-
+/* 
       --text-foreground: 222.2 47.4% 1.2%;
       --bg-background: 222.2 47.4% 1.2%;
-
+ */
     }
    
     .dark {
@@ -97,13 +97,12 @@ input{
   }
    
   @layer base {
-    * {
+   /*  * {
       @apply border;
     }
     body {
-      @apply bg-background; 
-      @apply text-foreground;
+      @apply bg-background text-foreground;
       font-feature-settings: "rlig" 1, "calt" 1;
-    }
+    } */
   }
-   */
+   

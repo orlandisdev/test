@@ -8,11 +8,9 @@ const DropMenu = ({ data, isOpen }) => {
                 ? data.map((asset) => (
                       <Link
                         href={asset.url}
-                          className={`px-2 hover:cursor-pointer hover:transition transition-all`}
+                          className={` hover:bg-blue-600 hover:cursor-pointer hover:transition transition-all py-4 rounded-lg`}
                           key={asset.id}
-                          style={{
-                              height: "70px",
-                          }}
+                         
                       >
                           <p className="flex flex-col items-center pt-4 gap-1">
                               {getIcon(asset.icon)}
